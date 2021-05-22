@@ -18,8 +18,7 @@ public class Admin {
 	{
 		List users = alRepo.findAll();
 		ModelAndView mv = new ModelAndView(page);
-		mv.addObject("users",users);
-		
+		mv.addObject("users",users);		
 		return mv;
 	}
 }
