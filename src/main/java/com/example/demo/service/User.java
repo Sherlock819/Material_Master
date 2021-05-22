@@ -41,8 +41,8 @@ public class User {
 	public int getAccessCode()
 	{
 		double r = (Math.random()) * (999999 - 100000 + 1) + 100000;
-		System.out.println("Generated code : "+r);
 		int randomCode = (int)r;
+		System.out.println("Generated code : "+randomCode);
 		return randomCode;
 	}
 	

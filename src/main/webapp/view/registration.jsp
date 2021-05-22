@@ -79,7 +79,7 @@
             <span class="error" style="position: relative;" id="cpassword"></span>
         </div>
 
-        <button type="submit" onclick="validate()">Login</button>
+        <button type="submit" onclick="validate()">Register</button>
     </div>
 
 

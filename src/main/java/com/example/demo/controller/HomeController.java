@@ -217,8 +217,6 @@ public class HomeController {
 //		System.out.println(alien.getFname()+" "+alien.getLname()+" "+alien.getPassword()+" "+alien.getDob()+" "+alien.getEmail());
 		if(!userRepo.findById(alien.getEmail()).isPresent())
 		{
-			user.addUser(alien);
-			System.out.println("User Added");
 			
 			UserVerification userVerification = new UserVerification();
 			int code;
@@ -226,6 +224,9 @@ public class HomeController {
 			userVerification.setEmail(alien.getEmail());
 			userVerification.setVerificationCode(code=user.getAccessCode());
 			user.sendVerificationEmail(userVerification); //Sends email verification code
+			
+			user.addUser(alien);
+			System.out.println("User Added");
 			
 			userVerificationRepo.save(userVerification);
 			System.out.println("Verfication code generated for email="+alien.getEmail() +" Access Code = "+code);
