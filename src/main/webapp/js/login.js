@@ -41,9 +41,7 @@ function login(){
                     }
                     else {
                               alert("Welcome User!");
-						                  // xhr2.open("GET", "registration", false);
-						                  // xhr2.send();
-                      	      // window.location.assign(xhr2.responseURL);
+						      window.location.assign("/userHomePage");
                     }
                 }
             };

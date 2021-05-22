@@ -1,11 +1,16 @@
 function fetchData()
 {
-
   createTable();
+  alert(loading);
   var empTab = document.getElementById('spinner');
-  empTab.setAttribute("className","spinner");
+ // empTab.setAttribute("className","spinner");
+	empTab.className = "spinner";
+  alert(loaded);
   getData();
   //empTab.setAttribute("class","");
+	empTab.className = "";
+  alert(unloaded);
+
 }
 
 function getData()

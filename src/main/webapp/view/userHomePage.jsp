@@ -31,13 +31,13 @@
 <div id="container">
   <h2 align="center"> SCREEN MATERIAL </h2>
 
-		  <div align="center">
+		<div align="center">
 		      <select id="sel">
             	<option value="1">Material Master</option>
 		        <option value="2">My Transactions</option>
 			   </select>
           <button onclick="call()" >GOTO</button>
-			</div>
+		</div>
 
 </div>
 

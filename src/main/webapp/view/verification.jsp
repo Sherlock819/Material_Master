@@ -13,6 +13,9 @@
 
 </head>
 
+
+</head>
+
 <body>
 
 
@@ -27,7 +30,7 @@
 
 <div id="container">
   <h3 align=center>Verify your email id - <b>${email}</b></h3>
-  <input type="hidden" id="email" value=${email}>
+  <input type="hidden" id="email" value="${email}">
 
   <div id = "innerContainer">
 

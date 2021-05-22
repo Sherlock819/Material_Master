@@ -1,0 +1,18 @@
+select
+{
+  background-color: rgba(50,70,90, 0.2);
+  border-color: rgba(50,70,90, 0.1);
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+option
+{
+  background-color: rgba(50,70,90, 0.1);
+
+}
