@@ -138,6 +138,14 @@ public class HomeController {
 	@GetMapping("verification/{email}")
 	public ModelAndView verification(@PathVariable String email )
 	{
+		
+		if( !userVerificationRepo.existsById(email) )
+		{
+			UserEntity alien = new UserEntity();
+			alien.setEmail(email);
+			generateAndSendVerificationCode(alien);
+		}
+		
 		System.out.println("Returning Verification with : "+email);
 //		System.out.println("Calling Verification for : "+alien.getEmail());
 		ModelAndView mv = new ModelAndView("verification");
@@ -218,24 +226,34 @@ public class HomeController {
 		if(!userRepo.findById(alien.getEmail()).isPresent())
 		{
 			
-			UserVerification userVerification = new UserVerification();
-			int code;
-			
-			userVerification.setEmail(alien.getEmail());
-			userVerification.setVerificationCode(code=user.getAccessCode());
-			user.sendVerificationEmail(userVerification); //Sends email verification code
-			
 			user.addUser(alien);
 			System.out.println("User Added");
 			
-			userVerificationRepo.save(userVerification);
-			System.out.println("Verfication code generated for email="+alien.getEmail() +" Access Code = "+code);
-			
-			return alien;
+			return generateAndSendVerificationCode(alien);
 		}
+		else
+		if(!userVerificationRepo.findById(alien.getEmail()).isPresent())
+		{
+			return generateAndSendVerificationCode(alien);
+		}
+		
 		System.out.println("User Already exists!");
 		return false;
 		
+	}
+	
+	public Object generateAndSendVerificationCode(UserEntity alien)
+	{
+		UserVerification userVerification = new UserVerification();
+		int code;
+		
+		userVerification.setEmail(alien.getEmail());
+		userVerification.setVerificationCode(code=user.getAccessCode());
+		user.sendVerificationEmail(userVerification); //Sends email verification code
+		userVerificationRepo.save(userVerification);
+		System.out.println("Verfication code generated for email="+alien.getEmail() +" Access Code = "+code);
+		
+		return alien;
 	}
 	
 	
