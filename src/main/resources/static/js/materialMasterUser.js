@@ -1,92 +1,43 @@
-let pageNo=1;
-
 function fetchData()
 {
-  	createTable();
-	document.getElementById('spinner').className = "spinner";
-	let pagination = {"page": 1,"dataPerPage": 5};
-  	getData(pagination);
+  createTable();
+  //alert("loading");
+  var empTab = document.getElementById('spinner');
+ // empTab.setAttribute("className","spinner");
+	empTab.className = "spinner";
+  //alert("loading");
+  getData();
+  //empTab.setAttribute("class","");
+	empTab.className = "";
+  //alert("unloaded");
+
 }
 
-function refreshData(element)
-{
-	
-	document.getElementById('spinner').className = "spinner";
-	
-	if(document.getElementById(pageNo).hasAttribute('class'))
-		document.getElementById(pageNo).removeAttribute("class");
-	
-	if(element.id === 'pageNext' )
-	{
-		pageNo = pageNo + 1;
-		if(pageNo>=1 && pageNo<=3)
-		{
-			document.getElementById(pageNo).setAttribute("class","active");
-		}
-	}
-	else
-	if(element.id === 'pageBack')
-	{
-		pageNo = pageNo - 1;
-		if(pageNo>=1 && pageNo<=3)
-		{
-			document.getElementById(pageNo).setAttribute("class","active");
-		}
-	}
-	else
-	if(parseInt(element.text)>=1 && parseInt(element.text)<=3)
-	{
-		pageNo = parseInt(element.text);
-		document.getElementById(element.id).setAttribute("class","active");
-	}
-	
-	if(pageNo>3)
-	{
-		document.getElementById('extended').innerHTML = pageNo;
-		document.getElementById('extended').setAttribute("class","active");
-		if(document.getElementById('extended').hasAttribute('hidden'))
-			document.getElementById('extended').removeAttribute("hidden");
-		if(document.getElementById('dots').hasAttribute('hidden'))
-			document.getElementById('dots').removeAttribute("hidden");
-	}
-	
-	if(pageNo>1)
-	{
-		document.getElementById('pageBack').removeAttribute("style");
-	}
-	else
-	{
-		document.getElementById('pageBack').setAttribute("style","pointer-events: none");
-	}
-	
-	let pagination = {page: pageNo,dataPerPage: 5};
-	
-  	getData(pagination);
-}
-
-function getData(pagination)
+function getData()
 {
 	let url = "/getMaterial";
-	
-	let options = {
-		method: 'POST',
-		body : JSON.stringify(pagination),
-		headers: { 
-        "Content-type": "application/json"
-    } 
-	}
-	
-  	let res = fetch(url,options);
 
-    	res.then(res => res.json())
-    	.then(data => {
+  	fetch(url,
+	{
+		method: "POST",
+		// Adding body or contents to send
+    body : JSON.stringify({
+        page: 1,
+        dataPerPage: 5
+    }),
+	headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+
+	}).then(response => response.json())
+    	.then(json => {
         	// code to handle the response
-			console.log(data);
-			let size = Object.keys(data).length;
+			console.log(json);
+			let size = Object.keys(json).length;
 
 			for(let i=0;i<size;i++)
 			{
-				addRow(data[i]);
+				addRow(json[i]);
 			}
 
     	}).catch(err => {
@@ -153,7 +104,6 @@ function getData(pagination)
 			if(rowData.hasOwnProperty(key))
 				td.appendChild(document.createTextNode(rowData[key]));
 		}
-		document.getElementById('spinner').className = "";
 	}
 
 

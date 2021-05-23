@@ -23,7 +23,7 @@ function verify()
           if(this.responseText === "1")
           {
             alert("Email is verified!");
-            window.location.assign("/login");//to homepage
+            window.location.assign("/userHomePage");//to homepage
           }
           else
           if(this.responseText === "2") {

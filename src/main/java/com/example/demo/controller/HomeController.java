@@ -159,7 +159,7 @@ public class HomeController {
 	{
 		System.out.println(data.get("page")+" "+data.get("dataPerPage"));
 		List<MaterialEntity> mData = materialRepo.findAll();
-		System.out.println("Returning material data");
+		System.out.println("Returning material data of size : "+mData.size() +" "+mData.get(0));
 		return mData;
 	}
 	

@@ -6,10 +6,10 @@ body{
 
 h2
 {
-  background-color: rgba(50,70,90, 0.05);
   width: 100%;
   font-family:cursive;
   border-radius: 50px;
+  color : rgba(50,70,90, 1);
 }
 
 .error {color: #6D1717;}
@@ -80,7 +80,7 @@ h2
           box-sizing: border-box;
         }
 
-        
+
 
 @media screen and (max-width: 850px) {
   #container {width:80%}
